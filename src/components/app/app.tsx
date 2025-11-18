@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Layout from '@layouts/main-layout';
 
@@ -13,19 +13,17 @@ import SignUpScreen from '@pages/sign-up-screen/sign-up-screen';
 import { AppRoute } from '../../const';
 
 const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path={AppRoute.SignUp} element={<SignUpScreen />} />
-      <Route path={AppRoute.LogIn} element={<LogInScreen />} />
-      <Route element={<Layout />}>
-        <Route index element={<MainScreen />} />
-        <Route path={AppRoute.Catalog} element={<CatalogScreen />} />
-        <Route path={AppRoute.Product} element={<ProductScreen />} />
-        <Route path={AppRoute.Favourites} element={<FavouritesScreen />} />
-        <Route path="*" element={<NotFoundScreen />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <Routes>
+    <Route path={AppRoute.SignUp} element={<SignUpScreen />} />
+    <Route path={AppRoute.LogIn} element={<LogInScreen />} />
+    <Route element={<Layout />}>
+      <Route index element={<MainScreen />} />
+      <Route path={AppRoute.Catalog} element={<CatalogScreen />} />
+      <Route path={AppRoute.Product} element={<ProductScreen />} />
+      <Route path={AppRoute.Favourites} element={<FavouritesScreen />} />
+      <Route path="*" element={<NotFoundScreen />} />
+    </Route>
+  </Routes>
 );
 
 export default App;

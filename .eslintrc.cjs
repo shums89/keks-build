@@ -11,8 +11,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    "plugin:import/recommended",
-    "plugin:import/typescript",
+    'plugin:import/recommended',
+    'plugin:import/typescript',
     'htmlacademy/react-typescript'
   ],
   parser: '@typescript-eslint/parser',
@@ -57,11 +57,12 @@ module.exports = {
           {
             groups: [
               // Packages `react` related packages come first.
-              ['^react', '^\\w', '^@hookform', '^@radix-ui'],
+              ['^react', '^\\w', '^@hookform', '^@radix-ui', '^@redux(.*|$)'],
               // npm packages
               // Anything that starts with a letter (or digit or underscore), or `@` followed by a letter.
               // ['^\\w'],
               // Internal packages.
+              ['types(/.*|$)'],
               ['^@store(/.*|$)'],
               ['^@layouts(/.*|$)'],
               ['^@pages(/.*|$)'],
