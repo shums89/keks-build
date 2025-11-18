@@ -1,22 +1,26 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { fetchProductsAction } from '@src/store/api-actions';
-import { getIsProductsLoading, selectRandomProducts } from '@src/store/product-data/selectors';
+import { fetchLastReviewAction, fetchProductsAction } from '@src/store/api-actions';
+import { getIsProductsLoading, getLastReview, selectRandomProducts } from '@src/store/product-data/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';
 
-import Loader from '@components/loader/loader';
-import RandomMain from '@components/random-main/random-main';
+import ProductCard from '@components/product-card/product-card';
+import Review from '@components/review/review';
 
 import { AppRoute } from '@src/const';
+
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const MainScreen = () => {
   const dispatch = useAppDispatch();
   const isProductsDataLoading = useAppSelector(getIsProductsLoading);
   const products = useAppSelector(selectRandomProducts);
+  const review = useAppSelector(getLastReview);
 
   useEffect(() => {
     dispatch(fetchProductsAction());
+    dispatch(fetchLastReviewAction());
   }, [dispatch]);
 
   return (
@@ -36,45 +40,44 @@ const MainScreen = () => {
         </div>
       </div>
 
-      {!isProductsDataLoading ? <RandomMain products={products} /> : <Loader />}
+      <section className="random-main">
+        <div className="container">
+          <h2 className="random-main__title">кексы</h2>
+          <ul className="random-main__list">
+            {
+              !isProductsDataLoading
+                ? products.map((product) => (
+                  <li key={product.id} className="random-main__item" >
+                    <ProductCard product={ product}/>
+                  </li>))
+                : Array.from({ length: 3 }, (_, i) => i + 1).map((e) => (
+                  <li key={e} className="random-main__item" >
+                    <ProductCard product={null} />
+                  </li>))
+            }
+            <li className="random-main__item">
+              <Link to={AppRoute.Catalog} className="random-main__link">
+                <div className="random-main__icon-wrapper">
+                  <div className="random-main__icon">
+                    <svg width="120" height="130" aria-hidden="true">
+                      <use xlinkHref="#icon-keks"></use>
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="random-main__subtitle">Все кексы</h3>
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </section>
 
       <section className="last-review">
         <div className="container">
           <h2 className="last-review__title">последний отзыв</h2>
-          <div className="review">
-            <div className="review__inner-wrapper review__inner-wrapper--border">
-              <time className="review__date" dateTime="2023-05-15">15.05</time><span className="review__author">Уважаемый(-ая) Кот</span>
-              <div className="star-rating">
-                <svg className="star-rating__star star-rating__star--active" width="30" height="30" aria-hidden="true">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-                <svg className="star-rating__star star-rating__star--active" width="30" height="30" aria-hidden="true">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-                <svg className="star-rating__star star-rating__star--active" width="30" height="30" aria-hidden="true">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-                <svg className="star-rating__star star-rating__star--active" width="30" height="30" aria-hidden="true">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-                <svg className="star-rating__star star-rating__star--active" width="30" height="30" aria-hidden="true">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-              </div>
-              <div className="review__text-wrapper">
-                <p className="review__text">&quot;Отличный сервис! Очень вкусный, сочный и&nbsp;яркий торт. Удобная коробка для транспортировки. Свежие фрукты и&nbsp;съедобный дизайн.</p>
-                <p className="review__text">Недостатков нет, обязательно будем заказывать и&nbsp;приходить в&nbsp;Кексик</p>
-              </div>
-              <div className="review__image-wrapper">
-                <picture>
-                  <source type="image/webp" srcSet="img/content/review-1.webp, img/content/review-1@2x.webp 2x" />
-                  <img src="img/content/review-1.jpg" srcSet="img/content/review-1@2x.jpg 2x" width="162" height="162" alt="Кот" />
-                </picture>
-              </div>
-            </div>
-          </div>
+          {<Review review={review}/>}
         </div>
       </section>
+
       <section className="map">
         <div className="container">
           <h2 className="map__title">адреса</h2>

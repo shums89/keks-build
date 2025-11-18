@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AppRoute } from '@src/const';
@@ -53,4 +54,4 @@ const Header = () => (
   </header>
 );
 
-export default Header;
+export default memo(Header);
