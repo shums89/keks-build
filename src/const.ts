@@ -1,4 +1,4 @@
-export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
+export const BACKEND_URL = 'https://grading.design.htmlacademy.pro1';
 export const REQUEST_TIMEOUT = 5000;
 
 export enum AppRoute {

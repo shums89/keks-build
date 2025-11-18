@@ -1,10 +1,7 @@
-import Skeleton from 'react-loading-skeleton';
-
 import FavoriteButton from '@components/favorite-button/favorite-button';
+import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
 
 import type { Product } from '@src/types/product';
-
-import 'react-loading-skeleton/dist/skeleton.css';
 
 type ProductCardProps = {
   product: Product | null;
@@ -15,11 +12,11 @@ const ProductCard = ({product}: ProductCardProps) => {
     return (
       <div className="card-item">
         <div className="card-item__img-link" >
-          <Skeleton width={241} height={241} />
+          <LoadingSkeleton width={241} height={245} />
         </div>
         <div className="card-item__link">
           <h3 className="card-item__title">
-            <Skeleton inline />
+            <LoadingSkeleton height={30} />
           </h3>
         </div>
       </div>

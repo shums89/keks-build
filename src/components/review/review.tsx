@@ -1,5 +1,6 @@
-import Skeleton from 'react-loading-skeleton';
 import { clsx } from 'clsx';
+
+import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
 
 import type { ProductReview } from '@src/types/product';
 
@@ -17,15 +18,15 @@ const Review = ({review}: ReviewProps) => {
     return (
       <div className="review">
         <div className="review__inner-wrapper review__inner-wrapper--border">
-          <div className="review__date"><Skeleton width={72} height={0}/></div>
-          <span className="review__author"><Skeleton width={260} inline/></span>
-          <div className="star-rating"><Skeleton width={214} height={30} /></div>
+          <div className="review__date"><LoadingSkeleton width={72} height={10} background/></div>
+          <span className="review__author"><LoadingSkeleton width={260} height={30}/></span>
+          <div className="star-rating"><LoadingSkeleton width={214} height={30} /></div>
           <div className="review__text-wrapper">
-            <p className="review__text"><Skeleton width={597} height={40} /></p>
-            <p className="review__text"><Skeleton width={597} height={40} /></p>
+            <p className="review__text"><LoadingSkeleton width={597} height={40} /></p>
+            <p className="review__text"><LoadingSkeleton width={597} height={40} /></p>
           </div>
           <div className="review__image-wrapper">
-            <Skeleton width={162} height={162} circle />
+            <LoadingSkeleton width={162} height={162} circle />
           </div>
         </div>
       </div>

@@ -10,8 +10,6 @@ import Review from '@components/review/review';
 
 import { AppRoute } from '@src/const';
 
-import 'react-loading-skeleton/dist/skeleton.css';
-
 const MainScreen = () => {
   const dispatch = useAppDispatch();
   const isProductsDataLoading = useAppSelector(getIsProductsLoading);
