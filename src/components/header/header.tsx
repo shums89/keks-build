@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { AppRoute } from '../../const';
+import { AppRoute } from '@src/const';
 
 const Header = () => (
   <header className="header header--authorized">

@@ -1,9 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import type { Product } from '../../types/product';
-import type { State } from '../../types/state';
+import type { Product } from '@src/types/product';
+import type { State } from '@src/types/state';
 
-import { StoreSlice } from '../../const';
+import { StoreSlice } from '@src/const';
 
 export const getProducts = (state: State): Product[] => state[StoreSlice.ProductData].products;
 export const getIsProductsLoading = (state: State): boolean => state[StoreSlice.ProductData].isProductsDataLoading;

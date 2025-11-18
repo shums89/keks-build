@@ -62,11 +62,8 @@ module.exports = {
               // Anything that starts with a letter (or digit or underscore), or `@` followed by a letter.
               // ['^\\w'],
               // Internal packages.
-              ['types(/.*|$)'],
-              ['^@store(/.*|$)'],
-              ['^@layouts(/.*|$)'],
-              ['^@pages(/.*|$)'],
-              ['^@components(/.*|$)'],
+              ['store(/.*|$)'],
+              ['types(/.*|$)', 'layouts(/.*|$)', '^@pages(/.*|$)', '^@components(/.*|$)'],
               ['^@ui(/.*|$)'],
               ['^@lib(/.*|$)'],
               ['^@utils(/.*|$)'],

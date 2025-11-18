@@ -1,10 +1,10 @@
 import type { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import type { Product } from '../types/product';
-import type { AppDispatch, State } from '../types/state';
+import type { Product } from '@src/types/product';
+import type { AppDispatch, State } from '@src/types/state';
 
-import { APIRoute } from '../const';
+import { APIRoute } from '@src/const';
 
 const Action = {
   data: {

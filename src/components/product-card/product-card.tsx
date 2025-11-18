@@ -1,5 +1,4 @@
-import type { Product } from '../../types/product';
-
+import type { Product } from '@src/types/product';
 import FavoriteButton from '@components/favorite-button/favorite-button';
 
 type ProductCardProps = Product;

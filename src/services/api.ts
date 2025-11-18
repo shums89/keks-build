@@ -2,9 +2,9 @@ import { toast } from 'react-toastify';
 import axios, { AxiosError, type AxiosInstance, type AxiosResponse, type InternalAxiosRequestConfig} from 'axios';
 import { StatusCodes } from 'http-status-codes';
 
-import { BACKEND_URL, REQUEST_TIMEOUT } from '../const';
-
 import { getToken } from './token';
+
+import { BACKEND_URL, REQUEST_TIMEOUT } from '@src/const';
 
 type DetailMessageType = {
   type: string;
