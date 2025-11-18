@@ -2,7 +2,6 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import type { Product } from '@src/types/product';
 import type { State } from '@src/types/state';
-
 import { StoreSlice } from '@src/const';
 
 export const getProducts = (state: State): Product[] => state[StoreSlice.ProductData].products;

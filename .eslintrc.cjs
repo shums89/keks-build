@@ -62,19 +62,19 @@ module.exports = {
               // Anything that starts with a letter (or digit or underscore), or `@` followed by a letter.
               // ['^\\w'],
               // Internal packages.
-              ['store(/.*|$)'],
-              ['types(/.*|$)', 'layouts(/.*|$)', '^@pages(/.*|$)', '^@components(/.*|$)'],
-              ['^@ui(/.*|$)'],
-              ['^@lib(/.*|$)'],
-              ['^@utils(/.*|$)'],
-              ['^@hooks(/.*|$)'],
-              ['^@services(/.*|$)'],
+              ['@src/store(/.*|$)', 'store(/.*|$)', '@src/hooks(/.*|$)', 'hooks(/.*|$)'],
+              ['@src/layouts(/.*|$)', '^@pages(/.*|$)', '^@components(/.*|$)'],
+              ['^@src/types(/.*|$)', '^@src(/.*|$)'],
+              // ['^@ui(/.*|$)'],
+              // ['^@lib(/.*|$)'],
+              // ['^@utils(/.*|$)'],
+              // ['^@hooks(/.*|$)'],
+              // ['^@services(/.*|$)'],
               // Side effect imports.
               ['^\\u0000'],
               // Parent imports. Put `..` last.
-              ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
               // Other relative imports. Put same-folder imports and `.` last.
-              ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+              ['^\\.\\.(?!/?$)', '^\\.\\./?$', '^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
               // Style imports.
               ['^.+\\.?(css)$'],
             ],

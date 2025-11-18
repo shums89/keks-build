@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { fetchProductsAction } from '@src/store/api-actions';
 import { getIsProductsLoading, selectRandomProducts } from '@src/store/product-data/selectors';
+import { useAppDispatch, useAppSelector } from '@src/hooks';
 
 import Loader from '@components/loader/loader';
 import RandomMain from '@components/random-main/random-main';
 
 import { AppRoute } from '@src/const';
-import { useAppDispatch, useAppSelector } from '@src/hooks';
 
 const MainScreen = () => {
   const dispatch = useAppDispatch();

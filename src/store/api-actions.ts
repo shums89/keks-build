@@ -3,7 +3,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { Product } from '@src/types/product';
 import type { AppDispatch, State } from '@src/types/state';
-
 import { APIRoute } from '@src/const';
 
 const Action = {

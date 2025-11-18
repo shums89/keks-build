@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import type { Product } from '@src/types/product';
 import ProductCard from '@components/product-card/product-card';
 
+import type { Product } from '@src/types/product';
 import { AppRoute } from '@src/const';
 
 type RandomMainProps = {

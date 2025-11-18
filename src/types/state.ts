@@ -1,6 +1,6 @@
-import type { Product } from './product';
-
 import type { store } from '@src/store';
+
+import type { Product } from './product';
 
 export type ProductData = {
   products: Product[];
