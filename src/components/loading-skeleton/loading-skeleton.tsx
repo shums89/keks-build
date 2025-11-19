@@ -12,7 +12,7 @@ type LoadingSkeletonProps = {
 const toString = (value: string | number) => (typeof value === 'number' ? `${value}px` : value);
 
 const LoadingSkeleton = ({width, height, circle = false, background = false}: LoadingSkeletonProps) => (
-  <div
+  <span
     className={clsx('loading-skeleton', { 'loading-skeleton--transparent': background })}
     style={{
       width: `${width ? toString(width) : '100%'}`,
@@ -20,7 +20,7 @@ const LoadingSkeleton = ({width, height, circle = false, background = false}: Lo
       borderRadius: `${circle ? '50%' : '0.25rem'}`,
     }}
   >
-  </div>
+  </span>
 );
 
 export default LoadingSkeleton;

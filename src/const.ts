@@ -1,4 +1,6 @@
-export const BACKEND_URL = 'https://grading.design.htmlacademy.pro1';
+import type { Point } from './types/map';
+
+export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
 
 export enum AppRoute {
@@ -29,3 +31,36 @@ export enum StoreSlice {
   ProductProcess = 'PRODUCT_PROCESS',
   UserProcess = 'USER_PROCESS',
 }
+
+export const URL_MARKER_DEFAULT = 'img/content/map-marker1.svg';
+export const URL_MARKER_CURRENT = 'img/content/map-marker2.svg';
+
+export const Points: Point[] = [
+  {
+    name: 'Кондитерская 1',
+    address: 'Морской пр. 2А',
+    location: {
+      latitude: 59.971,
+      longitude: 30.278,
+      zoom: 16,
+    },
+  },
+  {
+    name: 'Кондитерская 2',
+    address: 'пр. Динамо, 6',
+    location: {
+      latitude: 59.9708,
+      longitude: 30.2808,
+      zoom: 16,
+    },
+  },
+  {
+    name: 'Производство',
+    address: 'ул. Вакуленчука, 4',
+    location: {
+      latitude: 59.9721,
+      longitude: 30.2751,
+      zoom: 16,
+    },
+  },
+];
