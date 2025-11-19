@@ -1,6 +1,7 @@
-import { type FormEvent,useRef } from 'react';
+import { type ChangeEvent, type FormEvent,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { clsx } from 'clsx';
 import isEmail from 'validator/lib/isEmail';
 
 import { loginAction } from '@src/store/api-actions';
@@ -10,29 +11,19 @@ import { AppRoute, INVALID_LOGIN_MESSAGE, INVALID_PASSWORD_MESSAGE, VALID_PASSWO
 
 const LoginScreen = () => {
   const dispatch = useAppDispatch();
+  const [isValidLogin, setIsValidLogin] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
-
   const handleClick = () => {
-    if (loginRef.current === null || loginRef.current.value === '') {
-      toast.warn('Введите вашу почту');
-    } else {
-      if (!isEmail(loginRef.current.value)) {
-        toast.warn(INVALID_LOGIN_MESSAGE);
-        return;
-      }
+    if (!isValidLogin) {
+      toast.warn(INVALID_LOGIN_MESSAGE);
     }
 
-    if (passwordRef.current === null || passwordRef.current.value === '') {
-      toast.warn('Введите ваш пароль');
-    } else {
-      const password = String(passwordRef.current.value);
-
-      if (/\s/.test(password) && !password.match(VALID_PASSWORD_REGEX)) {
-        toast.warn(INVALID_PASSWORD_MESSAGE);
-      }
+    if (!isValidPassword) {
+      toast.warn(INVALID_PASSWORD_MESSAGE);
     }
   };
 
@@ -47,6 +38,30 @@ const LoginScreen = () => {
       login: loginRef.current.value,
       password: passwordRef.current.value
     }));
+  };
+
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    switch (evt.target.name) {
+      case 'user-mail-1':
+        setIsValidLogin(true);
+        if (loginRef.current === null || loginRef.current.value === '') {
+          setIsValidLogin(false);
+        } else {
+          if (!isEmail(loginRef.current.value)) {
+            setIsValidLogin(false);
+          }
+        }
+        break;
+      case 'user-password-1':
+        setIsValidPassword(true);
+        if (passwordRef.current === null || passwordRef.current.value === '') {
+          setIsValidPassword(false);
+        } else {
+          if (!VALID_PASSWORD_REGEX.test(String(passwordRef.current.value))){
+            setIsValidPassword(false);
+          }
+        }
+    }
   };
 
   return (
@@ -64,19 +79,30 @@ const LoginScreen = () => {
               <div className="login-page__form">
                 <form action="#" method="post" onSubmit={handleSubmit}>
                   <div className="login-page__fields">
-                    <div className="custom-input login-page__field">
+
+                    <div className={
+                      clsx('custom-input login-page__field',
+                        { 'is-invalid': !isValidLogin , 'is-valid': isValidLogin })
+                    }
+                    >
                       <label>
                         <span className="custom-input__label">Введите вашу почту</span>
-                        <input ref={loginRef} type="email" name="user-mail-1" placeholder="Почта" required />
+                        <input ref={loginRef} onChange={handleInputChange} type="email" name="user-mail-1" placeholder="Почта" required />
                       </label>
                     </div>
-                    <div className="custom-input login-page__field">
+
+                    <div className={
+                      clsx('custom-input login-page__field',
+                        { 'is-invalid': !isValidPassword , 'is-valid': isValidPassword })
+                    }
+                    >
                       <label>
                         <span className="custom-input__label">Введите ваш пароль</span>
-                        <input ref={passwordRef} type="password" name="user-password-1" placeholder="Пароль" required />
+                        <input ref={passwordRef} onChange={handleInputChange} type="password" name="user-password-1" placeholder="Пароль" required />
                       </label>
                     </div>
                   </div>
+
                   <button className="btn login-page__btn btn--large" type="submit" onClick={handleClick}>
                     Войти
                   </button>

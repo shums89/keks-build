@@ -3,6 +3,9 @@ import type { Point } from './types/map';
 export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
 
+export const INVALID_NAME_MESSAGE = 'Имя должно включать минимум одну букву';
+export const VALID_NAME_REGEX = /^(?=.*[a-zA-Z])([a-zA-Z]+)$/;
+
 export const INVALID_LOGIN_MESSAGE = 'Пожалуйста, введите действительный адрес электронной почты';
 
 export const INVALID_PASSWORD_MESSAGE = 'Пароль должен содержать хотя бы одну букву и цифру, без пробелов';

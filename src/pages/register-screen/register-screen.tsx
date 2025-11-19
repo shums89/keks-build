@@ -1,16 +1,20 @@
 import { type ChangeEvent, type FormEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { clsx } from 'clsx';
 import isEmail from 'validator/lib/isEmail';
 
 import { registerAction } from '@src/store/api-actions';
 import { useAppDispatch } from '@src/hooks';
 
-import { AppRoute, INVALID_LOGIN_MESSAGE, INVALID_PASSWORD_MESSAGE, VALID_PASSWORD_REGEX } from '@src/const';
+import { AppRoute, INVALID_LOGIN_MESSAGE, INVALID_PASSWORD_MESSAGE, VALID_NAME_REGEX, VALID_PASSWORD_REGEX } from '@src/const';
 
 const RegisterScreen = () => {
   const dispatch = useAppDispatch();
   const [avatar, setAvatar] = useState('');
+  const [isValidName, setIsValidName] = useState(false);
+  const [isValidLogin, setIsValidLogin] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
 
   const nameRef = useRef<HTMLInputElement | null>(null);
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -18,27 +22,16 @@ const RegisterScreen = () => {
   const avatarRef = useRef<HTMLInputElement | null>(null);
 
   const handleClick = () => {
-    if (nameRef.current === null || nameRef.current.value === '') {
-      toast.warn('Введите ваше имя');
+    if (!isValidName) {
+      toast.warn(INVALID_PASSWORD_MESSAGE);
     }
 
-    if (loginRef.current === null || loginRef.current.value === '') {
-      toast.warn('Введите вашу почту');
-    } else {
-      if (!isEmail(loginRef.current.value)) {
-        toast.warn(INVALID_LOGIN_MESSAGE);
-        return;
-      }
+    if (!isValidLogin) {
+      toast.warn(INVALID_LOGIN_MESSAGE);
     }
 
-    if (passwordRef.current === null || passwordRef.current.value === '') {
-      toast.warn('Введите ваш пароль');
-    } else {
-      const password = String(passwordRef.current.value);
-
-      if (/\s/.test(password) && !password.match(VALID_PASSWORD_REGEX)) {
-        toast.warn(INVALID_PASSWORD_MESSAGE);
-      }
+    if (!isValidPassword) {
+      toast.warn(INVALID_PASSWORD_MESSAGE);
     }
   };
 
@@ -55,6 +48,40 @@ const RegisterScreen = () => {
       password: passwordRef.current.value,
       avatarUrl: avatar || null
     }));
+  };
+
+  const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    switch (evt.target.name) {
+      case 'user-name-1':
+        setIsValidName(true);
+        if (nameRef.current === null || nameRef.current.value === '') {
+          setIsValidName(false);
+        } else {
+          if (!VALID_NAME_REGEX.test(String(nameRef.current.value))) {
+            setIsValidName(false);
+          }
+        }
+        break;
+      case 'user-mail-1':
+        setIsValidLogin(true);
+        if (loginRef.current === null || loginRef.current.value === '') {
+          setIsValidLogin(false);
+        } else {
+          if (!isEmail(loginRef.current.value)) {
+            setIsValidLogin(false);
+          }
+        }
+        break;
+      case 'user-password-1':
+        setIsValidPassword(true);
+        if (passwordRef.current === null || passwordRef.current.value === '') {
+          setIsValidPassword(false);
+        } else {
+          if (!VALID_PASSWORD_REGEX.test(String(passwordRef.current.value))){
+            setIsValidPassword(false);
+          }
+        }
+    }
   };
 
   const handleFileChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -85,25 +112,41 @@ const RegisterScreen = () => {
               <h1 className="register-page__title">Регистрация</h1>
               <div className="register-page__form">
                 <form action="#" method="post" autoComplete="off" onSubmit={handleSubmit}>
+
                   <div className="register-page__fields">
-                    <div className="custom-input register-page__field">
+                    <div className={
+                      clsx('custom-input register-page__field',
+                        { 'is-invalid': !isValidName , 'is-valid': isValidName })
+                    }
+                    >
                       <label>
                         <span className="custom-input__label">Введите ваше имя</span>
-                        <input ref={nameRef} type="text" name="user-name-1" placeholder="Имя" required />
+                        <input ref={nameRef} onChange={handleInputChange} type="text" name="user-name-1" placeholder="Имя" required />
                       </label>
                     </div>
-                    <div className="custom-input register-page__field">
+
+                    <div className={
+                      clsx('custom-input register-page__field',
+                        { 'is-invalid': !isValidLogin , 'is-valid': isValidLogin })
+                    }
+                    >
                       <label>
                         <span className="custom-input__label">Введите вашу почту</span>
-                        <input ref={loginRef} type="email" name="user-mail-1" placeholder="Почта" required />
+                        <input ref={loginRef} onChange={handleInputChange} type="email" name="user-mail-1" placeholder="Почта" required />
                       </label>
                     </div>
-                    <div className="custom-input register-page__field">
+
+                    <div className={
+                      clsx('custom-input register-page__field',
+                        { 'is-invalid': !isValidPassword , 'is-valid': isValidPassword })
+                    }
+                    >
                       <label>
                         <span className="custom-input__label">Введите ваш пароль</span>
-                        <input ref={passwordRef} type="password" name="user-password-1" placeholder="Пароль" required />
+                        <input ref={passwordRef} onChange={handleInputChange} type="password" name="user-password-1" placeholder="Пароль" required />
                       </label>
                     </div>
+
                     <div className="custom-input register-page__field">
                       <label>
                         <span className="custom-input__label">Загрузите ваше фото</span>
