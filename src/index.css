@@ -1140,7 +1140,7 @@ button,
 }
 
 .header--authorized .header__buttons {
-  gap: 73px;
+  gap: 30px;
 }
 
 .header__inner {

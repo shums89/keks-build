@@ -3,18 +3,33 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from '@src/layouts/main-layout';
 import CatalogScreen from '@pages/catalog-screen/catalog-screen';
 import FavouritesScreen from '@pages/favourites-screen/favourites-screen';
-import LogInScreen from '@pages/login-screen/login-screen';
+import LoginScreen from '@pages/login-screen/login-screen';
 import MainScreen from '@pages/main-screen/main-screen';
 import NotFoundScreen from '@pages/not-found-screen/not-found-screen';
 import ProductScreen from '@pages/product-screen/product-screen';
-import SignUpScreen from '@pages/sign-up-screen/sign-up-screen';
+import RegisterScreen from '@pages/register-screen/register-screen';
+import PrivateRoute from '@components/private-route/private-route';
 
-import { AppRoute } from '@src/const';
+import { AppRoute, AuthorizationStatus } from '@src/const';
 
 const App = () => (
   <Routes>
-    <Route path={AppRoute.SignUp} element={<SignUpScreen />} />
-    <Route path={AppRoute.LogIn} element={<LogInScreen />} />
+    <Route
+      path={AppRoute.Register}
+      element={
+        <PrivateRoute restrictedFor={AuthorizationStatus.Auth} redirectTo={AppRoute.Root}>
+          <RegisterScreen />
+        </PrivateRoute>
+      }
+    />
+    <Route
+      path={AppRoute.Login}
+      element={
+        <PrivateRoute restrictedFor={AuthorizationStatus.Auth} redirectTo={AppRoute.Root}>
+          <LoginScreen />
+        </PrivateRoute>
+      }
+    />
     <Route element={<Layout />}>
       <Route index element={<MainScreen />} />
       <Route path={AppRoute.Catalog} element={<CatalogScreen />} />

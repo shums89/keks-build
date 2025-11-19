@@ -3,15 +3,26 @@ import type { Point } from './types/map';
 export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
 
+export const INVALID_LOGIN_MESSAGE = 'Пожалуйста, введите действительный адрес электронной почты';
+
+export const INVALID_PASSWORD_MESSAGE = 'Пароль должен содержать хотя бы одну букву и цифру, без пробелов';
+export const VALID_PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+
 export enum AppRoute {
   Root = '/',
-  Catalog = '/Catalog',
-  Product = '/Product',
-  LogIn = '/LogIn',
-  SignUp = '/SignUp',
-  Favourites = '/Favourites',
-  Error = '/Error',
+  Catalog = '/catalog',
+  Product = '/product',
+  Login = '/login',
+  Register = '/register',
+  Favourites = '/favourites',
+  Error = '/error',
   NotFound = '/404',
+}
+
+export enum AuthorizationStatus {
+  Auth = 'AUTH',
+  NoAuth = 'NO_AUTH',
+  Unknown = 'UNKNOWN',
 }
 
 export enum APIRoute {
@@ -20,7 +31,7 @@ export enum APIRoute {
   Favourites = '/v0/keks/favourites',
   Reviews = '/v0/keks/reviews',
   LastReview = '/v0/keks/reviews/getLast',
-  SignUp = '/v0/keks/users/registration',
+  Register = '/v0/keks/users/registration',
   UserAvatar = '/v0/keks/users/upload',
   Login = '/v0/keks/users/login',
   Logout = '/v0/keks/users/logout',
