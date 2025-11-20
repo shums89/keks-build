@@ -4,21 +4,9 @@ import { Icon, Marker } from 'leaflet';
 import useMap from '@src/hooks/use-map';
 
 import type { Point } from '@src/types/map';
-import { Points, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '@src/const';
+import { MapMarkers, Points } from '@src/const';
 
 import 'leaflet/dist/leaflet.css';
-
-const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [26, 24],
-  iconAnchor: [13, 12]
-});
-
-const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
-  iconSize: [26, 24],
-  iconAnchor: [13, 12]
-});
 
 const Map = () => {
   const [point, setPoint] = useState<Point>(Points[0]);
@@ -29,14 +17,21 @@ const Map = () => {
     const markers: Marker[] = [];
 
     if (map) {
-      Points.forEach(({ name, location: { latitude: lat, longitude: lng } }) => {
+      Points.forEach(({ name, mapMarker, location: { latitude: lat, longitude: lng } }) => {
         const marker = new Marker({
           lat,
           lng
         });
 
+        const customIcon = new Icon({
+          iconUrl: MapMarkers[mapMarker].iconUrl,
+          iconSize: MapMarkers[mapMarker].iconSize,
+          iconAnchor: MapMarkers[mapMarker].iconAnchor
+        });
+
         marker
-          .setIcon(point.name === name ? currentCustomIcon : defaultCustomIcon)
+          .setIcon(customIcon)
+          .setOpacity(Number(point.name === name))
           .addTo(map);
 
         markers.push(marker);
@@ -58,7 +53,7 @@ const Map = () => {
         });
       }
     };
-  }, [map, point,mapRef]);
+  }, [map, point, mapRef]);
 
   return (
     <section className="map">
@@ -76,7 +71,8 @@ const Map = () => {
                     checked={point.name === name}
                   />
                   <label className="custom-toggle__label" htmlFor={`user-agreement-id-${i}`}>{name}</label>
-                  <address className="custom-toggle__address">{address}
+                  <address className="custom-toggle__address">
+                    {address}
                     <svg className="custom-toggle__icon" width="26" height="24" aria-hidden="true">
                       <use xlinkHref="#icon-keks-footprint"></use>
                     </svg>

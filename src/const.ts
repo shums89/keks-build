@@ -1,4 +1,4 @@
-import type { Point } from './types/map';
+import type { IconName, MapMarker, Point } from './types/map';
 
 export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
@@ -46,35 +46,50 @@ export enum StoreSlice {
   UserProcess = 'USER_PROCESS',
 }
 
-export const URL_MARKER_DEFAULT = 'img/content/map-marker1.svg';
-export const URL_MARKER_CURRENT = 'img/content/map-marker2.svg';
+export const IconNames = ['production', 'confectionery'] as const;
+
+export const MapMarkers: { [key in IconName]: MapMarker } = {
+  production: {
+    iconUrl: 'img/content/map-marker1.svg',
+    iconSize: [26, 24],
+    iconAnchor: [13, 12],
+  },
+  confectionery: {
+    iconUrl: 'img/content/map-marker2.svg',
+    iconSize: [26, 24],
+    iconAnchor: [13, 12],
+  },
+};
 
 export const Points: Point[] = [
   {
     name: 'Кондитерская 1',
-    address: 'Морской пр. 2А',
+    address: 'ул. Профессора Попова, 9А',
+    mapMarker: 'confectionery',
     location: {
-      latitude: 59.971,
-      longitude: 30.278,
-      zoom: 16,
+      latitude: 59.970969,
+      longitude: 30.316252,
+      zoom: 15,
     },
   },
   {
     name: 'Кондитерская 2',
-    address: 'пр. Динамо, 6',
+    address: 'ул. Вязовая, 13',
+    mapMarker: 'confectionery',
     location: {
-      latitude: 59.9708,
-      longitude: 30.2808,
-      zoom: 16,
+      latitude: 59.967947,
+      longitude: 30.274708,
+      zoom: 15,
     },
   },
   {
     name: 'Производство',
-    address: 'ул. Вакуленчука, 4',
+    address: 'ул. Малая Пушкарская, 36',
+    mapMarker: 'production',
     location: {
-      latitude: 59.9721,
-      longitude: 30.2751,
-      zoom: 16,
+      latitude: 59.960380,
+      longitude: 30.308725,
+      zoom: 15,
     },
   },
 ];
