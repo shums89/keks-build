@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { clsx } from 'clsx';
 
 import './loading-skeleton.css';
@@ -23,4 +24,4 @@ const LoadingSkeleton = ({width, height, circle = false, background = false}: Lo
   </span>
 );
 
-export default LoadingSkeleton;
+export default memo(LoadingSkeleton);

@@ -1,4 +1,5 @@
-import type { AxiosInstance } from 'axios';
+import type { AxiosError, AxiosInstance } from 'axios';
+import { StatusCodes } from 'http-status-codes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import type { Product, ProductReview } from '@src/types/product';
@@ -12,6 +13,7 @@ import { redirectToRoute } from './action';
 
 const Action = {
   data: {
+    FETCH_PRODUCT: 'data/fetchProduct',
     FETCH_PRODUCTS: 'data/fetchProducts',
     FETCH_LAST_REVIEW: 'data/fetchLastReview',
   },
@@ -22,6 +24,29 @@ const Action = {
     LOGOUT: 'user/logout',
   },
 } as const;
+
+export const fetchProductAction = createAsyncThunk<
+  Product,
+  Product['id'],
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(Action.data.FETCH_PRODUCT, async (id, {dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<Product>(`${APIRoute.Prooducts}/${id}`);
+    return data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+
+    if (axiosError.response?.status === StatusCodes.NOT_FOUND) {
+      dispatch(redirectToRoute(AppRoute.NotFound));
+    }
+
+    return Promise.reject(error);
+  }
+});
 
 export const fetchProductsAction = createAsyncThunk<
   Product[],

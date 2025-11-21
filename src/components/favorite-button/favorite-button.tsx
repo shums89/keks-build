@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { clsx } from 'clsx';
 
 type FavoriteButtonProps = {
@@ -13,4 +14,4 @@ const FavoriteButton = ({ isFavorite }: FavoriteButtonProps) => (
   </button>
 );
 
-export default FavoriteButton;
+export default memo(FavoriteButton, (prevProps, nextProps) => prevProps.isFavorite === nextProps.isFavorite);

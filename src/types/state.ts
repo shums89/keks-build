@@ -7,6 +7,7 @@ import type { UserData } from './user-data';
 export type ProductData = {
   products: Product[];
   isProductsDataLoading: boolean;
+  product: Product | null;
   lastReview: ProductReview | null;
 };
 

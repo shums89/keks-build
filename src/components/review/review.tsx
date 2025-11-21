@@ -1,6 +1,7 @@
 import { clsx } from 'clsx';
 
 import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
+import StarRating from '@components/star-rating/star-rating';
 
 import type { ProductReview } from '@src/types/product';
 
@@ -40,18 +41,9 @@ const Review = ({review}: ReviewProps) => {
       <div className="review__inner-wrapper review__inner-wrapper--border">
         <time className="review__date" dateTime={isoDate}>{getFormattedDate(isoDate)}</time>
         <span className="review__author">{user.name}</span>
-        <div className="star-rating">
-          {
-            Array.from({ length: 5 }, (_, i) => i + 1).map((e) => (
-              <svg key={e}
-                className={clsx('star-rating__star', { 'star-rating__star--active': e <= rating })}
-                width="30" height="30" aria-hidden="true"
-              >
-                <use xlinkHref="#icon-star"></use>
-              </svg>
-            ))
-          }
-        </div>
+
+        <StarRating rating={rating} />
+
         <div className="review__text-wrapper">
           <p className="review__text">{positive}</p>
           <p className="review__text">{negative}</p>

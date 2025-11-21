@@ -33,7 +33,7 @@ const App = () => (
     <Route element={<Layout />}>
       <Route index element={<MainScreen />} />
       <Route path={AppRoute.Catalog} element={<CatalogScreen />} />
-      <Route path={AppRoute.Product} element={<ProductScreen />} />
+      <Route path={`${AppRoute.Product}/:id`} element={<ProductScreen />} />
       <Route path={AppRoute.Favourites} element={<FavouritesScreen />} />
       <Route path="*" element={<NotFoundScreen />} />
     </Route>

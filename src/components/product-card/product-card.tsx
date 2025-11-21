@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import { clsx } from 'clsx';
 
 import FavoriteButton from '@components/favorite-button/favorite-button';
 import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
 
 import type { Product } from '@src/types/product';
+import { AppRoute } from '@src/const';
 
 type ProductCardProps = {
   product: Product | null;
@@ -35,7 +37,7 @@ const ProductCard = ({product, isBig}: ProductCardProps) => {
 
   return (
     <div className={clsx('card-item', {'card-item--big': isBig})}>
-      <a className="card-item__img-link" href="#">
+      <Link to={`${AppRoute.Product}/${product.id}`} className="card-item__img-link">
         <div className="card-item__img-wrapper">
           <picture>
             <source type="image/webp" srcSet={previewImageWebp} />
@@ -43,15 +45,15 @@ const ProductCard = ({product, isBig}: ProductCardProps) => {
           </picture>
         </div>
         {isNew ? <span className="card-item__label">Новинка</span> : null}
-      </a>
+      </Link>
 
       <FavoriteButton isFavorite={isFavorite} />
 
       {isBig ? <span className="card-item__price">4 100 p</span> : null}
 
-      <a className="card-item__link" href="#">
+      <Link to={`${AppRoute.Product}/${product.id}`} className="card-item__link">
         <h3 className="card-item__title"><span>{title}</span></h3>
-      </a>
+      </Link>
     </div>
   );
 };

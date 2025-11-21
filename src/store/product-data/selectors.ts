@@ -6,6 +6,7 @@ import { StoreSlice } from '@src/const';
 
 import { getCategoryFilter, getTypeFilter } from '../product-process/selectors';
 
+export const getProduct = (state: State): Product | null => state[StoreSlice.ProductData].product;
 export const getProducts = (state: State): Product[] => state[StoreSlice.ProductData].products;
 export const getIsProductsLoading = (state: State): boolean => state[StoreSlice.ProductData].isProductsDataLoading;
 

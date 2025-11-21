@@ -16,7 +16,7 @@ const RandomMain = ({products}: RandomMainProps) => (
       <ul className="random-main__list">
         {products.map((product) => (
           <li className="random-main__item" key={product.id}>
-            <ProductCard {...product}/>
+            <ProductCard product={product} />
           </li>
         ))}
         <li className="random-main__item">

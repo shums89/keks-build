@@ -29,7 +29,7 @@ const Catalog = () => {
   if (products.length && !filteredProducts.length) {
     return (
       <section className="not-found">
-        <h2 className="visually-hidden">Каталог выбранные товары</h2>
+        <h2 className="visually-hidden">Каталог</h2>
         <div className="container">
           <div className="not-found__content-wrapper">
             <div className="not-found__wrapper">
