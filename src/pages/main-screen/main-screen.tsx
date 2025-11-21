@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { fetchLastReviewAction, fetchProductsAction } from '@src/store/api-actions';
-import { getIsProductsLoading, getLastReview, selectRandomProducts } from '@src/store/product-data/selectors';
+import { getIsProductsLoading, getLastReview, getRandomProducts } from '@src/store/product-data/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';
 
 import Map from '@components/map/map';
@@ -14,7 +14,7 @@ import { AppRoute } from '@src/const';
 const MainScreen = () => {
   const dispatch = useAppDispatch();
   const isProductsDataLoading = useAppSelector(getIsProductsLoading);
-  const products = useAppSelector(selectRandomProducts);
+  const products = useAppSelector(getRandomProducts);
   const review = useAppSelector(getLastReview);
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const MainScreen = () => {
               !isProductsDataLoading
                 ? products.map((product) => (
                   <li key={product.id} className="random-main__item" >
-                    <ProductCard product={ product}/>
+                    <ProductCard product={product}/>
                   </li>))
                 : Array.from({ length: 3 }, (_, i) => i + 1).map((e) => (
                   <li key={e} className="random-main__item" >

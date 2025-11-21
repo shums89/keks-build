@@ -3,8 +3,8 @@ import type { UserData } from './user-data';
 export type Product ={
   id: string;
   title: string;
-  category: ProductCategory;
-  type: ProductType;
+  category: ProductCategory['name'];
+  type: ProductType['name'];
   price: number;
   previewImage: string;
   previewImageWebp: string;
@@ -17,9 +17,15 @@ export type Product ={
   reviewCount: number;
 }
 
-export type ProductCategory = 'bisque' | 'cheesecake' | 'shortbread' | 'dessert'
+export type ProductCategory = {
+  name: 'bisque' | 'cheesecake' | 'shortbread' | 'dessert';
+  title: string;
+}
 
-export type ProductType = 'chocolate' | 'vanilla' | 'vegetarian' | 'honey-cake' | 'lemon' | 'new-york' | 'tart' | 'funnel-cake' | 'basket-cake' | 'chocolate-muffin' | 'brand-muffin';
+export type ProductType = {
+  name: 'chocolate' | 'vanilla' | 'vegetarian' | 'honey-cake' | 'lemon' | 'new-york' | 'tart' | 'funnel-cake' | 'basket-cake' | 'chocolate-muffin' | 'brand-muffin';
+  title: string;
+}
 
 export type ProductReview = {
   id: string;

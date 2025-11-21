@@ -1,7 +1,7 @@
 import type { AuthorizationStatus } from '@src/const';
 import type { store } from '@src/store';
 
-import type { Product, ProductReview } from './product';
+import type { Product, ProductCategory, ProductReview, ProductType } from './product';
 import type { UserData } from './user-data';
 
 export type ProductData = {
@@ -9,6 +9,12 @@ export type ProductData = {
   isProductsDataLoading: boolean;
   lastReview: ProductReview | null;
 };
+
+export type ProductProcess = {
+  filterCategory: ProductCategory['name'] | null;
+  filterType: ProductType['name'][];
+  count: number;
+}
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;

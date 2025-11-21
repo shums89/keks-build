@@ -1,4 +1,7 @@
 import type { IconName, MapMarker, Point } from './types/map';
+import type { ProductCategory, ProductType } from './types/product';
+
+export const PRODUCT_COUNT_PER_STEP = 6;
 
 export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
@@ -92,4 +95,26 @@ export const Points: Point[] = [
       zoom: 15,
     },
   },
+];
+
+export const ProductCategories: ProductCategory[] = [
+  { name: 'bisque', title: 'Бисквит', },
+  { name: 'dessert', title: 'Десерт', },
+  { name: 'cheesecake', title: 'Чизкейк', },
+  { name: 'shortbread', title: 'Песочное', }
+];
+
+export const ProductTypes: ProductType[] = [
+  { name: 'chocolate', title: 'Шоколадный', },
+  { name: 'vanilla', title: 'Ванильный', },
+  { name: 'vegetarian', title: 'Вегетарианский', },
+  { name: 'honey-cake', title: 'Медовый торт', },
+  { name: 'lemon', title: 'Лимонный', },
+  { name: 'new-york', title: 'Нью-Йорк', },
+  { name: 'tart', title: 'Тарт', },
+  { name: 'funnel-cake', title: 'Торт "Воронка"', },
+  { name: 'basket-cake', title: 'Торт "Корзинка"', },
+  { name: 'chocolate-muffin', title: 'Шоколадный маффин', },
+  { name: 'brand-muffin', title: 'Фирменный маффин', },
+
 ];
