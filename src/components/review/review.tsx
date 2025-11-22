@@ -1,5 +1,3 @@
-import { clsx } from 'clsx';
-
 import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
 import StarRating from '@components/star-rating/star-rating';
 
@@ -19,7 +17,7 @@ const Review = ({review, isBorder}: ReviewProps) => {
   if (!review) {
     return (
       <div className="review">
-        <div className={clsx('review__inner-wrapper', {'review__inner-wrapper--border': isBorder})}>
+        <div className={`review__inner-wrapper ${isBorder ? 'review__inner-wrapper--border' : ''}`}>
           <div className="review__date"><LoadingSkeleton width={72} height={10} background/></div>
           <span className="review__author"><LoadingSkeleton width={260} height={30}/></span>
           <div className="star-rating"><LoadingSkeleton width={214} height={30} /></div>
@@ -39,7 +37,7 @@ const Review = ({review, isBorder}: ReviewProps) => {
 
   return (
     <div className="review">
-      <div className={clsx('review__inner-wrapper', {'review__inner-wrapper--border': isBorder})}>
+      <div className={`review__inner-wrapper ${isBorder ? 'review__inner-wrapper--border' : ''}`}>
         <time className="review__date" dateTime={isoDate}>{getFormattedDate(isoDate)}</time>
         <span className="review__author">{user.name}</span>
 

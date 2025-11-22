@@ -1,7 +1,6 @@
 import { type ChangeEvent, type FormEvent,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { clsx } from 'clsx';
 import isEmail from 'validator/lib/isEmail';
 
 import { loginAction } from '@src/store/api-actions';
@@ -80,10 +79,8 @@ const LoginScreen = () => {
                 <form action="#" method="post" onSubmit={handleSubmit}>
                   <div className="login-page__fields">
 
-                    <div className={
-                      clsx('custom-input login-page__field',
-                        { 'is-invalid': !isValidLogin , 'is-valid': isValidLogin })
-                    }
+                    <div className={`custom-input login-page__field 
+                        ${isValidLogin ? 'is-valid' : ''} ${!isValidLogin ? 'is-invalid' : ''} `}
                     >
                       <label>
                         <span className="custom-input__label">Введите вашу почту</span>
@@ -91,10 +88,8 @@ const LoginScreen = () => {
                       </label>
                     </div>
 
-                    <div className={
-                      clsx('custom-input login-page__field',
-                        { 'is-invalid': !isValidPassword , 'is-valid': isValidPassword })
-                    }
+                    <div className={`custom-input login-page__field 
+                        ${isValidPassword ? 'is-valid' : ''} ${!isValidPassword ? 'is-invalid' : ''} `}
                     >
                       <label>
                         <span className="custom-input__label">Введите ваш пароль</span>

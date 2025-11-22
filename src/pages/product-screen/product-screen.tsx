@@ -1,6 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { clsx } from 'clsx';
 
 import { fetchProductAction, fetchReviewsAction } from '@src/store/api-actions';
 import { getReviews } from '@src/store/product-data/selectors';
@@ -85,7 +84,8 @@ const ProductScreen = () => {
               <h3 className="filter-sort__sort-title">Сортировать по дате</h3>
               <div className="filter-sort__sort-btns-wrap">
                 <button
-                  className={clsx('filter-sort__sort-btn filter-sort__sort-btn--inc', { 'filter-sort__sort-btn--active': sortingDate === 'Increase' })}
+                  className={`filter-sort__sort-btn filter-sort__sort-btn--inc 
+                    ${sortingDate === 'Increase' ? 'filter-sort__sort-btn--active' : ''}`}
                   type="button" aria-label="сортировка по возрастанию"
                   onClick={() => setSortingDate('Increase')}
                 >
@@ -94,7 +94,8 @@ const ProductScreen = () => {
                   </svg>
                 </button>
                 <button
-                  className={clsx('filter-sort__sort-btn filter-sort__sort-btn--desc', { 'filter-sort__sort-btn--active': sortingDate === 'Decrease' })}
+                  className={`filter-sort__sort-btn filter-sort__sort-btn--desc
+                     ${sortingDate === 'Decrease' ? 'filter-sort__sort-btn--active' : ''}`}
                   type="button" aria-label="сортировка по убыванию"
                   onClick={() => setSortingDate('Decrease')}
                 >

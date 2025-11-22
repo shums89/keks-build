@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { clsx } from 'clsx';
 
 import { getProduct } from '@src/store/product-data/selectors';
 import { useAppSelector } from '@src/hooks';
@@ -98,7 +97,7 @@ export const ProductDetails = ({ isVivsibleReviewForm, onClickOpenReview }: Prod
               </div>
 
               <div className="item-details__button-wrapper">
-                <button className={clsx('item-details__like-button', { 'item-details__like-button--active': isFavorite })}>
+                <button className={`item-details__like-button ${isFavorite ? 'item-details__like-button--active' : ''}`}>
                   <svg width="45" height="37" aria-hidden="true">
                     <use xlinkHref="#icon-like"></use>
                   </svg>

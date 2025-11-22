@@ -1,5 +1,3 @@
-import { clsx } from 'clsx';
-
 type StarRatingProps = {
   rating: number;
   isBig?: boolean;
@@ -7,11 +5,11 @@ type StarRatingProps = {
 }
 
 const StarRating = ({ rating, isBig, count}: StarRatingProps) => (
-  <div className={clsx('star-rating', {'star-rating--big': isBig})}>
+  <div className={`star-rating ${isBig ? 'star-rating--big' : ''}`}>
     {
       Array.from({ length: 5 }, (_, i) => i + 1).map((el) => (
         <svg key={el}
-          className={clsx('star-rating__star', { 'star-rating__star--active': el <= rating })}
+          className={`star-rating__star ${el <= rating ? 'star-rating__star--active' : ''}`}
           width="30" height="30" aria-hidden="true"
         >
           <use xlinkHref="#icon-star"></use>

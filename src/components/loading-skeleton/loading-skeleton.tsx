@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { clsx } from 'clsx';
 
 import './loading-skeleton.css';
 
@@ -14,7 +13,7 @@ const toString = (value: string | number) => (typeof value === 'number' ? `${val
 
 const LoadingSkeleton = ({width, height, circle = false, background = false}: LoadingSkeletonProps) => (
   <span
-    className={clsx('loading-skeleton', { 'loading-skeleton--transparent': background })}
+    className={`loading-skeleton ${background ? 'loading-skeleton--background' : ''}`}
     style={{
       width: `${width ? toString(width) : '100%'}`,
       height : `${height ? toString(height) : '100%'}`,

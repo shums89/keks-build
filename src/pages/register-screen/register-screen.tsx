@@ -1,7 +1,6 @@
 import { type ChangeEvent, type FormEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { clsx } from 'clsx';
 import isEmail from 'validator/lib/isEmail';
 
 import { registerAction } from '@src/store/api-actions';
@@ -98,6 +97,8 @@ const RegisterScreen = () => {
     }
   };
 
+  const validField = (value: boolean) => value ? 'is-valid' : 'is-invalid';
+
   return (
     <div className="wrapper">
       <main>
@@ -114,43 +115,43 @@ const RegisterScreen = () => {
                 <form action="#" method="post" autoComplete="off" onSubmit={handleSubmit}>
 
                   <div className="register-page__fields">
-                    <div className={
-                      clsx('custom-input register-page__field',
-                        { 'is-invalid': !isValidName , 'is-valid': isValidName })
-                    }
-                    >
+                    <div className={`custom-input register-page__field ${validField(isValidName)}`}>
                       <label>
                         <span className="custom-input__label">Введите ваше имя</span>
-                        <input ref={nameRef} onChange={handleInputChange} type="text" name="user-name-1" placeholder="Имя" required />
+                        <input
+                          ref={nameRef} onChange={handleInputChange}
+                          type="text" name="user-name-1" placeholder="Имя" required
+                        />
                       </label>
                     </div>
 
-                    <div className={
-                      clsx('custom-input register-page__field',
-                        { 'is-invalid': !isValidLogin , 'is-valid': isValidLogin })
-                    }
-                    >
+                    <div className={`custom-input register-page__field ${validField(isValidLogin)}`}>
                       <label>
                         <span className="custom-input__label">Введите вашу почту</span>
-                        <input ref={loginRef} onChange={handleInputChange} type="email" name="user-mail-1" placeholder="Почта" required />
+                        <input
+                          ref={loginRef} onChange={handleInputChange}
+                          type="email" name="user-mail-1" placeholder="Почта" required
+                        />
                       </label>
                     </div>
 
-                    <div className={
-                      clsx('custom-input register-page__field',
-                        { 'is-invalid': !isValidPassword , 'is-valid': isValidPassword })
-                    }
-                    >
+                    <div className={`custom-input register-page__field ${validField(isValidPassword)}`}>
                       <label>
                         <span className="custom-input__label">Введите ваш пароль</span>
-                        <input ref={passwordRef} onChange={handleInputChange} type="password" name="user-password-1" placeholder="Пароль" required />
+                        <input
+                          ref={passwordRef} onChange={handleInputChange}
+                          type="password" name="user-password-1" placeholder="Пароль" required
+                        />
                       </label>
                     </div>
 
                     <div className="custom-input register-page__field">
                       <label>
                         <span className="custom-input__label">Загрузите ваше фото</span>
-                        <input ref={avatarRef} type="file" name="user-name-1" data-text="Аватар" accept="image/jpeg" onChange={handleFileChange} />
+                        <input
+                          ref={avatarRef} onChange={handleFileChange}
+                          type="file" name="user-name-1" data-text="Аватар" accept="image/jpeg"
+                        />
                       </label>
                     </div>
                   </div>

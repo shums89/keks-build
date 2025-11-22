@@ -1,5 +1,4 @@
 import { type ChangeEvent } from 'react';
-import { clsx } from 'clsx';
 
 import { setCategoryFilter, setTypeFilter } from '@src/store/product-process/product-process';
 import { getCategoryFilter, getTypeFilter } from '@src/store/product-process/selectors';
@@ -36,7 +35,8 @@ const CatalogFilter = () => {
               ProductCategories.map(({name, title}) => (
                 <li className="catalog-filter__item catalog-filter__item--first-level" key={name}>
                   <button
-                    className={clsx('btn btn--filter-first-level', { 'is-active': categoryFilter === name })} type="button"
+                    className={`btn btn--filter-first-level ${categoryFilter === name ? 'is-active' : ''}`}
+                    type="button"
                     onClick={() => handleCategoryClick(name)}
                   >
                     {title}
