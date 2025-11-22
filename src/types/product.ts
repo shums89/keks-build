@@ -1,8 +1,9 @@
-import type { SortingDate } from '@src/const';
+import type { SortingDate, SortingRating } from '@src/const';
 
 import type { UserData } from './user-data';
 
 export type SortDateName = keyof typeof SortingDate;
+export type SortRatingName = typeof SortingRating[number];
 
 export type Product ={
   id: string;

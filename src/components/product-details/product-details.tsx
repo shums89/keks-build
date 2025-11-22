@@ -18,7 +18,7 @@ export const ProductDetails = ({ isVivsibleReviewForm, onClickOpenReview }: Prod
 
   if (!product) {
     return (
-      <section className="item-details item-details--form-open">
+      <section className={`item-details ${isVivsibleReviewForm ? 'item-details--form-open' : ''}`}>
         <div className="container">
           <div className="item-details__wrapper">
             <div className="item-details__top-wrapper">
@@ -54,7 +54,7 @@ export const ProductDetails = ({ isVivsibleReviewForm, onClickOpenReview }: Prod
   const { title, price, previewImage, previewImageWebp, isFavorite, isNew, description, weight, rating, reviewCount } = product;
 
   return (
-    <section className="item-details item-details--form-open">
+    <section className={`item-details ${isVivsibleReviewForm ? 'item-details--form-open' : ''}`}>
       <div className="container">
         <div className="item-details__wrapper">
           <div className="item-details__top-wrapper">
