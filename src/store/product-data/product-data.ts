@@ -10,6 +10,7 @@ const initialState: ProductData = {
   products: [],
   isProductsDataLoading: false,
   reviews: [],
+  isReviewsLoadingError: false,
   lastReview: null,
 };
 
@@ -31,7 +32,10 @@ export const productData = createSlice({
       })
       .addCase(fetchReviewsAction.fulfilled, (state, action) => {
         state.reviews = action.payload;
-        state.isProductsDataLoading = false;
+        state.isReviewsLoadingError = false;
+      })
+      .addCase(fetchReviewsAction.rejected, (state) => {
+        state.isReviewsLoadingError = true;
       })
       .addCase(fetchLastReviewAction.fulfilled, (state, action) => {
         state.lastReview = action.payload;

@@ -11,6 +11,7 @@ export const getProducts = (state: State): Product[] => state[StoreSlice.Product
 export const getIsProductsLoading = (state: State): boolean => state[StoreSlice.ProductData].isProductsDataLoading;
 
 export const getReviews = (state: State): ProductReview[] => state[StoreSlice.ProductData].reviews;
+export const getIsReviewsLoadingError = (state: State): boolean => state[StoreSlice.ProductData].isReviewsLoadingError;
 export const getLastReview = (state: State): ProductReview | null => state[StoreSlice.ProductData].lastReview;
 
 export const getRandomProducts = createSelector(getProducts, (products) =>

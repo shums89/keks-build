@@ -9,6 +9,7 @@ export type ProductData = {
   isProductsDataLoading: boolean;
   product: Product | null;
   reviews: ProductReview[];
+  isReviewsLoadingError: boolean;
   lastReview: ProductReview | null;
 };
 
