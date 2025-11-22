@@ -1,7 +1,8 @@
 import type { IconName, MapMarker, Point } from './types/map';
-import type { ProductCategory, ProductType } from './types/product';
+import type { ProductCategory, ProductReview, ProductType, SortDateName } from './types/product';
 
 export const PRODUCT_COUNT_PER_STEP = 6;
+export const REVIEW_COUNT_PER_STEP = 2;
 
 export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
@@ -48,6 +49,24 @@ export enum StoreSlice {
   ProductProcess = 'PRODUCT_PROCESS',
   UserProcess = 'USER_PROCESS',
 }
+
+export const SortingRating: { id: number; title: string; min: number; max: number }[] = [
+  { id: 1, title: 'Любой', min: 0, max: 5 },
+  { id: 2, title: 'Высокий', min: 4, max: 5 },
+  { id: 3, title: 'Низкий', min: 0, max: 3 },
+];
+
+export enum SortingDate {
+  Increase = 'Сортировка по возрастанию',
+  Decrease = 'Сортировка по убыванию',
+}
+
+export const Comparator: {
+  [key in SortDateName]: (a: ProductReview, b: ProductReview) => number;
+} = {
+  Increase: (a, b) => new Date(a.isoDate).getTime() - new Date(b.isoDate).getTime(),
+  Decrease: (a, b) => new Date(b.isoDate).getTime() - new Date(a.isoDate).getTime(),
+};
 
 export const IconNames = ['production', 'confectionery'] as const;
 
@@ -116,5 +135,4 @@ export const ProductTypes: ProductType[] = [
   { name: 'basket-cake', title: 'Торт "Корзинка"', },
   { name: 'chocolate-muffin', title: 'Шоколадный маффин', },
   { name: 'brand-muffin', title: 'Фирменный маффин', },
-
 ];

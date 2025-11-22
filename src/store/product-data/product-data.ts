@@ -3,12 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { ProductData } from '@src/types/state';
 import { StoreSlice } from '@src/const';
 
-import { fetchLastReviewAction, fetchProductAction, fetchProductsAction } from '../api-actions';
+import { fetchLastReviewAction, fetchProductAction, fetchProductsAction, fetchReviewsAction } from '../api-actions';
 
 const initialState: ProductData = {
   product: null,
   products: [],
   isProductsDataLoading: false,
+  reviews: [],
   lastReview: null,
 };
 
@@ -26,6 +27,10 @@ export const productData = createSlice({
       })
       .addCase(fetchProductsAction.fulfilled, (state, action) => {
         state.products = action.payload;
+        state.isProductsDataLoading = false;
+      })
+      .addCase(fetchReviewsAction.fulfilled, (state, action) => {
+        state.reviews = action.payload;
         state.isProductsDataLoading = false;
       })
       .addCase(fetchLastReviewAction.fulfilled, (state, action) => {

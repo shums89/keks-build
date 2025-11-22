@@ -7,6 +7,7 @@ import type { ProductReview } from '@src/types/product';
 
 type ReviewProps = {
   review: ProductReview | null;
+  isBorder?: boolean;
 };
 
 const getFormattedDate = (date: string) => new Date(date).toLocaleDateString('ru-RU', {
@@ -14,11 +15,11 @@ const getFormattedDate = (date: string) => new Date(date).toLocaleDateString('ru
   day: 'numeric',
 });
 
-const Review = ({review}: ReviewProps) => {
+const Review = ({review, isBorder}: ReviewProps) => {
   if (!review) {
     return (
       <div className="review">
-        <div className="review__inner-wrapper review__inner-wrapper--border">
+        <div className={clsx('review__inner-wrapper', {'review__inner-wrapper--border': isBorder})}>
           <div className="review__date"><LoadingSkeleton width={72} height={10} background/></div>
           <span className="review__author"><LoadingSkeleton width={260} height={30}/></span>
           <div className="star-rating"><LoadingSkeleton width={214} height={30} /></div>
@@ -38,7 +39,7 @@ const Review = ({review}: ReviewProps) => {
 
   return (
     <div className="review">
-      <div className="review__inner-wrapper review__inner-wrapper--border">
+      <div className={clsx('review__inner-wrapper', {'review__inner-wrapper--border': isBorder})}>
         <time className="review__date" dateTime={isoDate}>{getFormattedDate(isoDate)}</time>
         <span className="review__author">{user.name}</span>
 

@@ -1,4 +1,8 @@
+import type { SortingDate } from '@src/const';
+
 import type { UserData } from './user-data';
+
+export type SortDateName = keyof typeof SortingDate;
 
 export type Product ={
   id: string;
@@ -28,7 +32,7 @@ export type ProductType = {
 }
 
 export type ProductReview = {
-  id: string;
+  id: Product['id'];
   isoDate: string;
   user: Pick<UserData, 'name' | 'avatarUrl'>;
   positive: string;

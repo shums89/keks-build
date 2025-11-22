@@ -8,6 +8,7 @@ export type ProductData = {
   products: Product[];
   isProductsDataLoading: boolean;
   product: Product | null;
+  reviews: ProductReview[];
   lastReview: ProductReview | null;
 };
 

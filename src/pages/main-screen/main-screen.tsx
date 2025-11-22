@@ -73,7 +73,7 @@ const MainScreen = () => {
       <section className="last-review">
         <div className="container">
           <h2 className="last-review__title">последний отзыв</h2>
-          {<Review review={review}/>}
+          {<Review review={review} isBorder />}
         </div>
       </section>
 

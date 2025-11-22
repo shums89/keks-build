@@ -10,6 +10,7 @@ export const getProduct = (state: State): Product | null => state[StoreSlice.Pro
 export const getProducts = (state: State): Product[] => state[StoreSlice.ProductData].products;
 export const getIsProductsLoading = (state: State): boolean => state[StoreSlice.ProductData].isProductsDataLoading;
 
+export const getReviews = (state: State): ProductReview[] => state[StoreSlice.ProductData].reviews;
 export const getLastReview = (state: State): ProductReview | null => state[StoreSlice.ProductData].lastReview;
 
 export const getRandomProducts = createSelector(getProducts, (products) =>

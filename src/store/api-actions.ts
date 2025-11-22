@@ -15,6 +15,7 @@ const Action = {
   data: {
     FETCH_PRODUCT: 'data/fetchProduct',
     FETCH_PRODUCTS: 'data/fetchProducts',
+    FETCH_REVIEWS: 'data/fetchReviews',
     FETCH_LAST_REVIEW: 'data/fetchLastReview',
   },
   user: {
@@ -58,6 +59,19 @@ export const fetchProductsAction = createAsyncThunk<
   }
 >(Action.data.FETCH_PRODUCTS, async (_arg, { extra: api }) => {
   const { data } = await api.get<Product[]>(APIRoute.Prooducts);
+  return data;
+});
+
+export const fetchReviewsAction = createAsyncThunk<
+  ProductReview[],
+  Product['id'],
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(Action.data.FETCH_REVIEWS, async (id, { extra: api }) => {
+  const { data } = await api.get<ProductReview[]>(`${APIRoute.Reviews}/${id}`);
   return data;
 });
 
