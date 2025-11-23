@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Layout from '@src/layouts/main-layout';
 import CatalogScreen from '@pages/catalog-screen/catalog-screen';
+import ErrorScreen from '@pages/error-screen/error-screen';
 import FavouritesScreen from '@pages/favourites-screen/favourites-screen';
 import LoginScreen from '@pages/login-screen/login-screen';
 import MainScreen from '@pages/main-screen/main-screen';
@@ -35,6 +36,7 @@ const App = () => (
       <Route path={AppRoute.Catalog} element={<CatalogScreen />} />
       <Route path={`${AppRoute.Product}/:id`} element={<ProductScreen />} />
       <Route path={AppRoute.Favourites} element={<FavouritesScreen />} />
+      <Route path={AppRoute.Error} element={<ErrorScreen />} />
       <Route path="*" element={<NotFoundScreen />} />
     </Route>
   </Routes>

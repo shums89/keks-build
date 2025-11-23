@@ -58,9 +58,15 @@ export const fetchProductsAction = createAsyncThunk<
     state: State;
     extra: AxiosInstance;
   }
->(Action.data.FETCH_PRODUCTS, async (_arg, { extra: api }) => {
-  const { data } = await api.get<Product[]>(APIRoute.Prooducts);
-  return data;
+>(Action.data.FETCH_PRODUCTS, async (_arg, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<Product[]>(APIRoute.Prooducts);
+    return data;
+  } catch (error) {
+    dispatch(redirectToRoute(AppRoute.Error));
+
+    return Promise.reject(error);
+  }
 });
 
 export const fetchReviewsAction = createAsyncThunk<
