@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
+import { Helmet } from '@dr.pogodin/react-helmet';
 
 import { AppRoute } from '@src/const';
 
 const NotFoundScreen = () => (
   <>
+    <Helmet>
+      <title>Кондитерская Кекс - 404</title>
+    </Helmet>
+
     <h1 className="visually-hidden">404</h1>
     <section className="error-page">
       <div className="container">

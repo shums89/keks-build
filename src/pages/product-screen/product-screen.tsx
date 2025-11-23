@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from '@dr.pogodin/react-helmet';
 
 import { redirectToRoute } from '@src/store/action';
 import { fetchProductAction } from '@src/store/api-actions';
@@ -38,6 +39,10 @@ const ProductScreen = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Кондитерская Кекс - Карточка товара</title>
+      </Helmet>
+
       <h1 className="visually-hidden">Карточка товара</h1>
 
       <BackLink />

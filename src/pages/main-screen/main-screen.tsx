@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from '@dr.pogodin/react-helmet';
 
 import { fetchLastReviewAction, fetchProductsAction } from '@src/store/api-actions';
 import { getIsProductsLoading, getLastReview, selectRandomProducts } from '@src/store/product-data/selectors';
@@ -24,6 +25,10 @@ const MainScreen = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Кондитерская Кекс - Главная</title>
+      </Helmet>
+
       <div className="hero">
         <div className="container">
           <div className="hero__img-wrapper">

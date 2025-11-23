@@ -2,6 +2,7 @@ import { type ChangeEvent, type FormEvent, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import isEmail from 'validator/lib/isEmail';
+import { Helmet } from '@dr.pogodin/react-helmet';
 
 import { registerAction } from '@src/store/api-actions';
 import { useAppDispatch } from '@src/hooks';
@@ -100,72 +101,78 @@ const RegisterScreen = () => {
   const validField = (value: boolean) => value ? 'is-valid' : 'is-invalid';
 
   return (
-    <div className="wrapper">
-      <main>
-        <section className="register-page">
-          <div className="register-page__header">
-            <div className="register-page__img-wrap">
-              <img className="register-page__img" src="img/svg/hero-keks.svg" width="727" height="569" alt="Картинка кота." />
-            </div>
-          </div>
-          <div className="register-page__content">
-            <div className="register-page__inner">
-              <h1 className="register-page__title">Регистрация</h1>
-              <div className="register-page__form">
-                <form action="#" method="post" autoComplete="off" onSubmit={handleSubmit}>
+    <>
+      <Helmet>
+        <title>Кондитерская Кекс - Регистрация</title>
+      </Helmet>
 
-                  <div className="register-page__fields">
-                    <div className={`custom-input register-page__field ${validField(isValidName)}`}>
-                      <label>
-                        <span className="custom-input__label">Введите ваше имя</span>
-                        <input
-                          ref={nameRef} onChange={handleInputChange}
-                          type="text" name="user-name-1" placeholder="Имя" required
-                        />
-                      </label>
-                    </div>
-
-                    <div className={`custom-input register-page__field ${validField(isValidLogin)}`}>
-                      <label>
-                        <span className="custom-input__label">Введите вашу почту</span>
-                        <input
-                          ref={loginRef} onChange={handleInputChange}
-                          type="email" name="user-mail-1" placeholder="Почта" required
-                        />
-                      </label>
-                    </div>
-
-                    <div className={`custom-input register-page__field ${validField(isValidPassword)}`}>
-                      <label>
-                        <span className="custom-input__label">Введите ваш пароль</span>
-                        <input
-                          ref={passwordRef} onChange={handleInputChange}
-                          type="password" name="user-password-1" placeholder="Пароль" required
-                        />
-                      </label>
-                    </div>
-
-                    <div className="custom-input register-page__field">
-                      <label>
-                        <span className="custom-input__label">Загрузите ваше фото</span>
-                        <input
-                          ref={avatarRef} onChange={handleFileChange}
-                          type="file" name="user-name-1" data-text="Аватар" accept="image/jpeg"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                  <button className="btn register-page__btn btn--large" type="submit" onClick={handleClick}>
-                    Зарегистрироваться
-                  </button>
-                </form>
+      <div className="wrapper">
+        <main>
+          <section className="register-page">
+            <div className="register-page__header">
+              <div className="register-page__img-wrap">
+                <img className="register-page__img" src="img/svg/hero-keks.svg" width="727" height="569" alt="Картинка кота." />
               </div>
-              <p className="register-page__text-wrap">Уже зарегистрированы? <Link to={AppRoute.Login} className="register-page__link">Войдите</Link> в свой аккаунт.</p>
             </div>
-          </div>
-        </section>
-      </main>
-    </div>
+            <div className="register-page__content">
+              <div className="register-page__inner">
+                <h1 className="register-page__title">Регистрация</h1>
+                <div className="register-page__form">
+                  <form action="#" method="post" autoComplete="off" onSubmit={handleSubmit}>
+
+                    <div className="register-page__fields">
+                      <div className={`custom-input register-page__field ${validField(isValidName)}`}>
+                        <label>
+                          <span className="custom-input__label">Введите ваше имя</span>
+                          <input
+                            ref={nameRef} onChange={handleInputChange}
+                            type="text" name="user-name-1" placeholder="Имя" required
+                          />
+                        </label>
+                      </div>
+
+                      <div className={`custom-input register-page__field ${validField(isValidLogin)}`}>
+                        <label>
+                          <span className="custom-input__label">Введите вашу почту</span>
+                          <input
+                            ref={loginRef} onChange={handleInputChange}
+                            type="email" name="user-mail-1" placeholder="Почта" required
+                          />
+                        </label>
+                      </div>
+
+                      <div className={`custom-input register-page__field ${validField(isValidPassword)}`}>
+                        <label>
+                          <span className="custom-input__label">Введите ваш пароль</span>
+                          <input
+                            ref={passwordRef} onChange={handleInputChange}
+                            type="password" name="user-password-1" placeholder="Пароль" required
+                          />
+                        </label>
+                      </div>
+
+                      <div className="custom-input register-page__field">
+                        <label>
+                          <span className="custom-input__label">Загрузите ваше фото</span>
+                          <input
+                            ref={avatarRef} onChange={handleFileChange}
+                            type="file" name="user-name-1" data-text="Аватар" accept="image/jpeg"
+                          />
+                        </label>
+                      </div>
+                    </div>
+                    <button className="btn register-page__btn btn--large" type="submit" onClick={handleClick}>
+                    Зарегистрироваться
+                    </button>
+                  </form>
+                </div>
+                <p className="register-page__text-wrap">Уже зарегистрированы? <Link to={AppRoute.Login} className="register-page__link">Войдите</Link> в свой аккаунт.</p>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </>
   );
 };
 

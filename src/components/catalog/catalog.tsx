@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 import { fetchProductsAction } from '@src/store/api-actions';
-import { selectFilteredProducts, getIsProductsLoading, getProducts } from '@src/store/product-data/selectors';
+import { getIsProductsLoading, getProducts, selectFilteredProducts } from '@src/store/product-data/selectors';
 import { incrementCountProducts } from '@src/store/product-process/product-process';
 import { getCountProducts } from '@src/store/product-process/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';

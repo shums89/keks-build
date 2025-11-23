@@ -2,6 +2,7 @@ import { type ChangeEvent, type FormEvent,useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import isEmail from 'validator/lib/isEmail';
+import { Helmet } from '@dr.pogodin/react-helmet';
 
 import { loginAction } from '@src/store/api-actions';
 import { useAppDispatch } from '@src/hooks';
@@ -64,51 +65,57 @@ const LoginScreen = () => {
   };
 
   return (
-    <div className="wrapper">
-      <main>
-        <section className="login-page">
-          <div className="login-page__header">
-            <div className="login-page__img-wrap">
-              <img className="login-page__img" src="img/svg/hero-keks.svg" width="727" height="569" alt="Картинка кота." />
-            </div>
-          </div>
-          <div className="login-page__content">
-            <div className="login-page__inner">
-              <h1 className="login-page__title">Вход</h1>
-              <div className="login-page__form">
-                <form action="#" method="post" onSubmit={handleSubmit}>
-                  <div className="login-page__fields">
+    <>
+      <Helmet>
+        <title>Кондитерская Кекс - Авторизация</title>
+      </Helmet>
 
-                    <div className={`custom-input login-page__field 
-                        ${isValidLogin ? 'is-valid' : ''} ${!isValidLogin ? 'is-invalid' : ''} `}
-                    >
-                      <label>
-                        <span className="custom-input__label">Введите вашу почту</span>
-                        <input ref={loginRef} onChange={handleInputChange} type="email" name="user-mail-1" placeholder="Почта" required />
-                      </label>
-                    </div>
-
-                    <div className={`custom-input login-page__field 
-                        ${isValidPassword ? 'is-valid' : ''} ${!isValidPassword ? 'is-invalid' : ''} `}
-                    >
-                      <label>
-                        <span className="custom-input__label">Введите ваш пароль</span>
-                        <input ref={passwordRef} onChange={handleInputChange} type="password" name="user-password-1" placeholder="Пароль" required />
-                      </label>
-                    </div>
-                  </div>
-
-                  <button className="btn login-page__btn btn--large" type="submit" onClick={handleClick}>
-                    Войти
-                  </button>
-                </form>
+      <div className="wrapper">
+        <main>
+          <section className="login-page">
+            <div className="login-page__header">
+              <div className="login-page__img-wrap">
+                <img className="login-page__img" src="img/svg/hero-keks.svg" width="727" height="569" alt="Картинка кота." />
               </div>
-              <p className="login-page__text-wrap">Ещё не зарегистрированы? <Link to={AppRoute.Register} className="login-page__link">Создайте</Link> аккаунт прямо сейчас.</p>
             </div>
-          </div>
-        </section>
-      </main>
-    </div>
+            <div className="login-page__content">
+              <div className="login-page__inner">
+                <h1 className="login-page__title">Вход</h1>
+                <div className="login-page__form">
+                  <form action="#" method="post" onSubmit={handleSubmit}>
+                    <div className="login-page__fields">
+
+                      <div className={`custom-input login-page__field 
+                        ${isValidLogin ? 'is-valid' : ''} ${!isValidLogin ? 'is-invalid' : ''} `}
+                      >
+                        <label>
+                          <span className="custom-input__label">Введите вашу почту</span>
+                          <input ref={loginRef} onChange={handleInputChange} type="email" name="user-mail-1" placeholder="Почта" required />
+                        </label>
+                      </div>
+
+                      <div className={`custom-input login-page__field 
+                        ${isValidPassword ? 'is-valid' : ''} ${!isValidPassword ? 'is-invalid' : ''} `}
+                      >
+                        <label>
+                          <span className="custom-input__label">Введите ваш пароль</span>
+                          <input ref={passwordRef} onChange={handleInputChange} type="password" name="user-password-1" placeholder="Пароль" required />
+                        </label>
+                      </div>
+                    </div>
+
+                    <button className="btn login-page__btn btn--large" type="submit" onClick={handleClick}>
+                    Войти
+                    </button>
+                  </form>
+                </div>
+                <p className="login-page__text-wrap">Ещё не зарегистрированы? <Link to={AppRoute.Register} className="login-page__link">Создайте</Link> аккаунт прямо сейчас.</p>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </>
   );
 };
 
