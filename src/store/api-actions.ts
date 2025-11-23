@@ -2,7 +2,7 @@ import type { AxiosError, AxiosInstance } from 'axios';
 import { StatusCodes } from 'http-status-codes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import type { Product, ProductReview } from '@src/types/product';
+import type { Product, ProductReview, ProductReviewAuth } from '@src/types/product';
 import type { AppDispatch, State } from '@src/types/state';
 import type { AuthData, UserData } from '@src/types/user-data';
 import browserHistory from '@src/browser-history';
@@ -17,6 +17,7 @@ const Action = {
     FETCH_PRODUCTS: 'data/fetchProducts',
     FETCH_REVIEWS: 'data/fetchReviews',
     FETCH_LAST_REVIEW: 'data/fetchLastReview',
+    POST_REVIEW: 'data/postReview',
   },
   user: {
     CHECK_AUTH: 'user/checkAuth',
@@ -85,6 +86,23 @@ export const fetchLastReviewAction = createAsyncThunk<
   }
 >(Action.data.FETCH_LAST_REVIEW, async (_arg, { extra: api }) => {
   const { data } = await api.get<ProductReview>(APIRoute.LastReview);
+  return data;
+});
+
+export const postReviewAction = createAsyncThunk<
+  ProductReview,
+  ProductReviewAuth,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(Action.data.POST_REVIEW, async ({ id, positive, negative, rating }, { extra: api }) => {
+  const { data } = await api.post<ProductReview>(`${APIRoute.Reviews}/${id}`, {
+    positive,
+    negative,
+    rating,
+  });
   return data;
 });
 

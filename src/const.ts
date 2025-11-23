@@ -3,6 +3,7 @@ import type { ProductCategory, ProductReview, ProductType, SortDateName } from '
 
 export const PRODUCT_COUNT_PER_STEP = 6;
 export const REVIEW_COUNT_PER_STEP = 2;
+export const MAX_REVIEW_LENGTH = 500;
 
 export const BACKEND_URL = 'https://grading.design.htmlacademy.pro';
 export const REQUEST_TIMEOUT = 5000;
@@ -48,6 +49,13 @@ export enum StoreSlice {
   ProductData = 'PRODUCT_DATA',
   ProductProcess = 'PRODUCT_PROCESS',
   UserProcess = 'USER_PROCESS',
+}
+
+export enum SubmitStatus {
+  Still = 'STILL',
+  Pending = 'PENDING',
+  Fullfilled = 'FULLFILLED',
+  Rejected = 'REJECTED',
 }
 
 export const SortingRating: { id: number; title: string; min: number; max: number }[] = [

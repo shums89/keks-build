@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
 import StarRating from '@components/star-rating/star-rating';
 
@@ -55,4 +57,4 @@ const Review = ({review, isBorder}: ReviewProps) => {
   );
 };
 
-export default Review;
+export default memo(Review);

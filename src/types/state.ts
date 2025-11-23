@@ -1,4 +1,4 @@
-import type { AuthorizationStatus } from '@src/const';
+import type { AuthorizationStatus, SubmitStatus } from '@src/const';
 import type { store } from '@src/store';
 
 import type { Product, ProductCategory, ProductReview, ProductType } from './product';
@@ -11,6 +11,7 @@ export type ProductData = {
   reviews: ProductReview[];
   isReviewsLoadingError: boolean;
   lastReview: ProductReview | null;
+  reviewStatus: SubmitStatus;
 };
 
 export type ProductProcess = {

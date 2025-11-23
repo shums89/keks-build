@@ -40,3 +40,5 @@ export type ProductReview = {
   negative: string;
   rating: number;
 }
+
+export type ProductReviewAuth = Pick<ProductReview, 'positive' | 'negative' | 'rating'> & Pick<Product, 'id'>;

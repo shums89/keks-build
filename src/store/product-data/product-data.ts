@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { ProductData } from '@src/types/state';
-import { StoreSlice } from '@src/const';
+import { StoreSlice, SubmitStatus } from '@src/const';
 
-import { fetchLastReviewAction, fetchProductAction, fetchProductsAction, fetchReviewsAction } from '../api-actions';
+import { fetchLastReviewAction, fetchProductAction, fetchProductsAction, fetchReviewsAction, postReviewAction } from '../api-actions';
 
 const initialState: ProductData = {
   product: null,
@@ -12,6 +12,7 @@ const initialState: ProductData = {
   reviews: [],
   isReviewsLoadingError: false,
   lastReview: null,
+  reviewStatus: SubmitStatus.Still,
 };
 
 export const productData = createSlice({
@@ -39,6 +40,16 @@ export const productData = createSlice({
       })
       .addCase(fetchLastReviewAction.fulfilled, (state, action) => {
         state.lastReview = action.payload;
+      })
+      .addCase(postReviewAction.pending, (state) => {
+        state.reviewStatus = SubmitStatus.Pending;
+      })
+      .addCase(postReviewAction.fulfilled, (state, action) => {
+        state.reviews = [...state.reviews, action.payload];
+        state.reviewStatus = SubmitStatus.Fullfilled;
+      })
+      .addCase(postReviewAction.rejected, (state) => {
+        state.reviewStatus = SubmitStatus.Rejected;
       });
   },
 });

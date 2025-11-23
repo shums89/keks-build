@@ -106,7 +106,7 @@ export const ProductDetails = ({ isVivsibleReviewForm, onClickOpenReview }: Prod
 
                 <button className="btn btn--second" type="button" onClick={() => onClickOpenReview()}>
                   {
-                    isVivsibleReviewForm ? 'Оставить отзыв' : 'Отменить отзыв'
+                    isVivsibleReviewForm ? 'Отменить отзыв' : 'Оставить отзыв'
                   }
                 </button>
               </div>
