@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 
 import { fetchProductsAction } from '@src/store/api-actions';
-import { getFilteredProducts, getIsProductsLoading, getProducts } from '@src/store/product-data/selectors';
+import { selectFilteredProducts, getIsProductsLoading, getProducts } from '@src/store/product-data/selectors';
 import { incrementCountProducts } from '@src/store/product-process/product-process';
 import { getCountProducts } from '@src/store/product-process/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';
@@ -14,7 +14,7 @@ const Catalog = () => {
   const dispatch = useAppDispatch();
   const isProductsLoading = useAppSelector(getIsProductsLoading);
   const products = useAppSelector(getProducts);
-  const filteredProducts = useAppSelector(getFilteredProducts);
+  const filteredProducts = useAppSelector(selectFilteredProducts);
   const countProducts = useAppSelector(getCountProducts);
   const isVisibleButton = filteredProducts.length > countProducts;
 

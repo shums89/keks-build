@@ -1,4 +1,4 @@
-import { type ChangeEvent } from 'react';
+import { type ChangeEvent, memo } from 'react';
 
 import { setCategoryFilter, setTypeFilter } from '@src/store/product-process/product-process';
 import { getCategoryFilter, getTypeFilter } from '@src/store/product-process/selectors';
@@ -75,4 +75,4 @@ const CatalogFilter = () => {
   );
 };
 
-export default CatalogFilter;
+export default memo(CatalogFilter);

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import FavoriteButton from '@components/favorite-button/favorite-button';
@@ -41,7 +42,7 @@ const ProductCard = ({product, isBig}: ProductCardProps) => {
         <div className="card-item__img-wrapper">
           <picture>
             <source type="image/webp" srcSet={previewImageWebp} />
-            <img src={previewImage} width="241" height="245" alt={title} />
+            <img loading="lazy" src={previewImage} width="241" height="245" alt={title} />
           </picture>
         </div>
         {isNew ? <span className="card-item__label">Новинка</span> : null}
@@ -58,4 +59,4 @@ const ProductCard = ({product, isBig}: ProductCardProps) => {
   );
 };
 
-export default ProductCard;
+export default memo(ProductCard);

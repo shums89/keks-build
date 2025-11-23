@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { fetchLastReviewAction, fetchProductsAction } from '@src/store/api-actions';
-import { getIsProductsLoading, getLastReview, getRandomProducts } from '@src/store/product-data/selectors';
+import { getIsProductsLoading, getLastReview, selectRandomProducts } from '@src/store/product-data/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';
 
 import Map from '@components/map/map';
@@ -14,7 +14,7 @@ import { AppRoute } from '@src/const';
 const MainScreen = () => {
   const dispatch = useAppDispatch();
   const isProductsDataLoading = useAppSelector(getIsProductsLoading);
-  const products = useAppSelector(getRandomProducts);
+  const products = useAppSelector(selectRandomProducts);
   const review = useAppSelector(getLastReview);
 
   useEffect(() => {

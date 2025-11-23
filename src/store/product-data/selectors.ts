@@ -18,14 +18,14 @@ export const getReviewStatus = (state: State): SubmitStatus => state[StoreSlice.
 export const getFavourites = (state: State): Product[] => state[StoreSlice.ProductData].favourites;
 export const getIsFavouritesLoading = (state: State): boolean => state[StoreSlice.ProductData].isFavouritesDataLoading;
 
-export const getRandomProducts = createSelector(getProducts, (products) =>
+export const selectRandomProducts = createSelector(getProducts, (products) =>
   products
     .slice()
     .sort(() => Math.random() - 0.5)
     .slice(0, 3)
 );
 
-export const getFilteredProducts = createSelector(
+export const selectFilteredProducts = createSelector(
   [getProducts, getCategoryFilter, getTypeFilter],
   (products, categoryFilter, typeFilter) =>
     products
