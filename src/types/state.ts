@@ -12,6 +12,8 @@ export type ProductData = {
   isReviewsLoadingError: boolean;
   lastReview: ProductReview | null;
   reviewStatus: SubmitStatus;
+  favourites: Product[];
+  isFavouritesDataLoading: boolean;
 };
 
 export type ProductProcess = {

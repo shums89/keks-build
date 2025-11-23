@@ -18,6 +18,9 @@ const Action = {
     FETCH_REVIEWS: 'data/fetchReviews',
     FETCH_LAST_REVIEW: 'data/fetchLastReview',
     POST_REVIEW: 'data/postReview',
+    FETCH_FAVOURITES: 'data/fetchFavourites',
+    PUT_FAVOURITE_STATUS: 'data/putFavoriteStatus',
+    DELETE_FAVOURITE_STATUS: 'data/deleteFavoriteStatus',
   },
   user: {
     CHECK_AUTH: 'user/checkAuth',
@@ -109,6 +112,51 @@ export const postReviewAction = createAsyncThunk<
     negative,
     rating,
   });
+  return data;
+});
+
+export const fetchFavouritesAction = createAsyncThunk<
+  Product[],
+  undefined,
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(Action.data.FETCH_FAVOURITES, async (_arg, {dispatch, extra: api }) => {
+  try {
+    const { data } = await api.get<Product[]>(APIRoute.Favourites);
+    return data;
+  } catch (error) {
+    dispatch(redirectToRoute(AppRoute.Error));
+
+    return Promise.reject(error);
+  }
+});
+
+export const putFavoriteStatusAction = createAsyncThunk<
+  Product,
+  Product['id'],
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(Action.data.PUT_FAVOURITE_STATUS, async (id , { extra: api }) => {
+  const { data } = await api.put<Product>(`${APIRoute.Favourites}/${id}`);
+  return data;
+});
+
+export const deleteFavoriteStatusAction = createAsyncThunk<
+  Product,
+  Product['id'],
+  {
+    dispatch: AppDispatch;
+    state: State;
+    extra: AxiosInstance;
+  }
+>(Action.data.DELETE_FAVOURITE_STATUS, async (id , { extra: api }) => {
+  const { data } = await api.delete<Product>(`${APIRoute.Favourites}/${id}`);
   return data;
 });
 

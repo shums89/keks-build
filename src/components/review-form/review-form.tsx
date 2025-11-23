@@ -7,9 +7,7 @@ import { useAppDispatch, useAppSelector } from '@src/hooks';
 
 import type { ProductReview } from '@src/types/product';
 import { MAX_REVIEW_LENGTH, SubmitStatus } from '@src/const';
-
-const declensionOfNouns = (n: number, words: string[]) =>
-  words[n % 100 > 4 && n % 100 < 20 ? 2 : [2, 0, 1, 1, 1, 2][n % 10 < 5 ? n % 10 : 5]];
+import { declensionOfNouns } from '@src/utils';
 
 type ReviewFormProps = {
   onCloseReviewForm: () => void;

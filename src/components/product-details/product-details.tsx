@@ -3,8 +3,11 @@ import { useState } from 'react';
 import { getProduct } from '@src/store/product-data/selectors';
 import { useAppSelector } from '@src/hooks';
 
+import FavoriteButton from '@components/favorite-button/favorite-button';
 import LoadingSkeleton from '@components/loading-skeleton/loading-skeleton';
 import StarRating from '@components/star-rating/star-rating';
+
+import { divideNumberByPieces } from '@src/utils';
 
 type ProductDetailsProps = {
   isVivsibleReviewForm: boolean;
@@ -59,10 +62,10 @@ export const ProductDetails = ({ isVivsibleReviewForm, onClickOpenReview }: Prod
         <div className="item-details__wrapper">
           <div className="item-details__top-wrapper">
             <h2 className="item-details__name">{title}</h2>
-            <span className="item-details__price">{`${price} р`}</span>
+            <span className="item-details__price">{`${divideNumberByPieces(price)} р`}</span>
           </div>
           <div className="item-details__weight-wrapper">
-            <span className="item-details__weight">{`${weight} грамм`}</span>
+            <span className="item-details__weight">{`${divideNumberByPieces(weight)} грамм`}</span>
           </div>
           <div className="item-details__bottom-wrapper">
             <div className="item-details__image-wrapper">
@@ -97,12 +100,7 @@ export const ProductDetails = ({ isVivsibleReviewForm, onClickOpenReview }: Prod
               </div>
 
               <div className="item-details__button-wrapper">
-                <button className={`item-details__like-button ${isFavorite ? 'item-details__like-button--active' : ''}`}>
-                  <svg width="45" height="37" aria-hidden="true">
-                    <use xlinkHref="#icon-like"></use>
-                  </svg>
-                  <span className="visually-hidden">Понравилось</span>
-                </button>
+                <FavoriteButton id={product.id} isFavorite={isFavorite} />
 
                 <button className="btn btn--second" type="button" onClick={() => onClickOpenReview()}>
                   {

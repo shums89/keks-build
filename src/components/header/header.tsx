@@ -1,7 +1,8 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { logoutAction } from '@src/store/api-actions';
+import { fetchFavouritesAction, logoutAction } from '@src/store/api-actions';
+import { getFavourites } from '@src/store/product-data/selectors';
 import { getAuthorizationStatus } from '@src/store/user-process/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';
 
@@ -10,6 +11,13 @@ import { AppRoute, AuthorizationStatus } from '@src/const';
 const Header = () => {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const favourites = useAppSelector(getFavourites);
+
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchFavouritesAction());
+    }
+  }, [authorizationStatus, dispatch]);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return null;
@@ -43,7 +51,7 @@ const Header = () => {
                         <use xlinkHref="#icon-favourite"></use>
                       </svg>
                     </span>
-                    <span className="header__favourite-number">2</span>
+                    <span className="header__favourite-number">{favourites.length}</span>
                     <span className="visually-hidden">Избранное</span>
                   </Link>
                   <div className="header__buttons-authorized">

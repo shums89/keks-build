@@ -36,7 +36,7 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Prooducts = '/v0/keks/products',
   Categories = '/v0/keks/categories',
-  Favourites = '/v0/keks/favourites',
+  Favourites = '/v0/keks/favorites',
   Reviews = '/v0/keks/reviews',
   LastReview = '/v0/keks/reviews/getLast',
   Register = '/v0/keks/users/registration',

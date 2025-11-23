@@ -15,6 +15,9 @@ export const getIsReviewsLoadingError = (state: State): boolean => state[StoreSl
 export const getLastReview = (state: State): ProductReview | null => state[StoreSlice.ProductData].lastReview;
 export const getReviewStatus = (state: State): SubmitStatus => state[StoreSlice.ProductData].reviewStatus;
 
+export const getFavourites = (state: State): Product[] => state[StoreSlice.ProductData].favourites;
+export const getIsFavouritesLoading = (state: State): boolean => state[StoreSlice.ProductData].isFavouritesDataLoading;
+
 export const getRandomProducts = createSelector(getProducts, (products) =>
   products
     .slice()
