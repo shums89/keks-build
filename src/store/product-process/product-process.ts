@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import type { Product } from '@src/types/product';
+import type { ProductCategory, ProductType } from '@src/types/product';
 import type { ProductProcess } from '@src/types/state';
 import { PRODUCT_COUNT_PER_STEP, StoreSlice } from '@src/const';
 
@@ -14,12 +14,17 @@ export const productProcess = createSlice({
   name: StoreSlice.ProductProcess,
   initialState,
   reducers: {
-    setCategoryFilter: (state, action: PayloadAction<Product['category']>) => {
+    resetFilters: (state) => {
+      state.filterCategory = null;
+      state.filterType = [];
+      state.count = PRODUCT_COUNT_PER_STEP;
+    },
+    setCategoryFilter: (state, action: PayloadAction<ProductCategory['name']>) => {
       state.filterCategory = state.filterCategory === action.payload ? null : action.payload;
       state.filterType = [];
       state.count = PRODUCT_COUNT_PER_STEP;
     },
-    setTypeFilter: (state, action: PayloadAction<Product['type'][]>) => {
+    setTypeFilter: (state, action: PayloadAction<ProductType['key'][]>) => {
       state.filterType = action.payload;
       state.count = PRODUCT_COUNT_PER_STEP;
     },
@@ -29,4 +34,4 @@ export const productProcess = createSlice({
   },
 });
 
-export const { setCategoryFilter, setTypeFilter, incrementCountProducts } = productProcess.actions;
+export const { resetFilters, setCategoryFilter, setTypeFilter, incrementCountProducts } = productProcess.actions;

@@ -22,15 +22,16 @@ export type Product ={
   reviewCount: number;
 }
 
-export type ProductCategory = {
-  name: 'bisque' | 'cheesecake' | 'shortbread' | 'dessert';
-  title: string;
+export type ProductType = {
+  [key: string]: string;
 }
 
-export type ProductType = {
-  name: 'chocolate' | 'vanilla' | 'vegetarian' | 'honey-cake' | 'lemon' | 'new-york' | 'tart' | 'funnel-cake' | 'basket-cake' | 'chocolate-muffin' | 'brand-muffin';
-  title: string;
-}
+export type ProductCategory = {
+    name: string;
+    title: string;
+    types: ProductType['key'][];
+  };
+
 
 export type ProductReview = {
   id: Product['id'];

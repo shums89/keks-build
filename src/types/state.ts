@@ -18,7 +18,7 @@ export type ProductData = {
 
 export type ProductProcess = {
   filterCategory: ProductCategory['name'] | null;
-  filterType: ProductType['name'][];
+  filterType: ProductType['key'][];
   count: number;
 }
 

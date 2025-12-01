@@ -124,23 +124,39 @@ export const Points: Point[] = [
   },
 ];
 
-export const ProductCategories: ProductCategory[] = [
-  { name: 'bisque', title: 'Бисквит', },
-  { name: 'dessert', title: 'Десерт', },
-  { name: 'cheesecake', title: 'Чизкейк', },
-  { name: 'shortbread', title: 'Песочное', }
-];
+export const ProductTypes: ProductType = {
+  chocolate: 'Шоколадный',
+  vanilla: 'Ванильный',
+  vegetarian: 'Вегетарианский',
+  'honey-cake': 'Медовый торт',
+  lemon: 'Лимонный',
+  'new-york': 'Нью-Йорк',
+  tart: 'Тарт',
+  'funnel-cake': 'Торт "Воронка"',
+  'basket-cake': 'Торт "Корзинка"',
+  'chocolate-muffin': 'Шоколадный маффин',
+  'brand-muffin': 'Фирменный маффин',
+};
 
-export const ProductTypes: ProductType[] = [
-  { name: 'chocolate', title: 'Шоколадный', },
-  { name: 'vanilla', title: 'Ванильный', },
-  { name: 'vegetarian', title: 'Вегетарианский', },
-  { name: 'honey-cake', title: 'Медовый торт', },
-  { name: 'lemon', title: 'Лимонный', },
-  { name: 'new-york', title: 'Нью-Йорк', },
-  { name: 'tart', title: 'Тарт', },
-  { name: 'funnel-cake', title: 'Торт "Воронка"', },
-  { name: 'basket-cake', title: 'Торт "Корзинка"', },
-  { name: 'chocolate-muffin', title: 'Шоколадный маффин', },
-  { name: 'brand-muffin', title: 'Фирменный маффин', },
+export const ProductCategories: ProductCategory[] = [
+  {
+    name: 'bisque',
+    title: 'Бисквит',
+    types: ['chocolate','vanilla','vegetarian','honey-cake']
+  },
+  {
+    name: 'cheesecake',
+    title: 'Чизкейк',
+    types: ['chocolate','vanilla','vegetarian','lemon','new-york']
+  },
+  {
+    name: 'shortbread',
+    title: 'Песочное',
+    types: ['tart','funnel-cake','basket-cake']
+  },
+  {
+    name: 'dessert',
+    title: 'Десерт',
+    types: ['chocolate-muffin','brand-muffin']
+  }
 ];
