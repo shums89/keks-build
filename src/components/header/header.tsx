@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { fetchFavouritesAction, logoutAction } from '@src/store/api-actions';
 import { getFavourites } from '@src/store/product-data/selectors';
-import { getAuthorizationStatus } from '@src/store/user-process/selectors';
+import { getAuthorizationStatus, getUser } from '@src/store/user-process/selectors';
 import { useAppDispatch, useAppSelector } from '@src/hooks';
 
 import { AppRoute, AuthorizationStatus } from '@src/const';
@@ -12,6 +12,7 @@ const Header = () => {
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const favourites = useAppSelector(getFavourites);
+  const user = useAppSelector(getUser);
 
   useEffect(() => {
     if (authorizationStatus === AuthorizationStatus.Auth) {
@@ -30,17 +31,18 @@ const Header = () => {
           <Link to={AppRoute.Root} className="header__logo" aria-label="Переход на главную">
             <img src="img/svg/logo.svg" width="170" height="69" alt="Кондитерская кекс" />
           </Link>
-          <div className="header__user-info-wrap">
-            <div className="header__user-info">
-              <div className="header__user-avatar">
-                <picture>
-                  <source type="image/webp" srcSet="img/content/user-avatar.webp, img/content/user-avatar@2x.webp 2x" />
-                  <img src="img/content/user-avatar.jpg" srcSet="img/content/user-avatar@2x.jpg 2x" width="62" height="62" alt="Аватар пользователя."/>
-                </picture>
+          {
+            authorizationStatus === AuthorizationStatus.Auth && user && (
+              <div className="header__user-info-wrap">
+                <div className="header__user-info">
+                  <div className="header__user-avatar">
+                    <img src={user.avatarUrl} width="62" height="62" alt="Аватар пользователя."/>
+                  </div>
+                  <span className="header__user-mail">{user.email}</span>
+                </div>
               </div>
-              <p className="header__user-mail">keks@academy.ru</p>
-            </div>
-          </div>
+            )
+          }
           <div className="header__buttons">
             {
               authorizationStatus === AuthorizationStatus.Auth && (
@@ -51,7 +53,9 @@ const Header = () => {
                         <use xlinkHref="#icon-favourite"></use>
                       </svg>
                     </span>
-                    <span className="header__favourite-number">{favourites.length}</span>
+                    {
+                      favourites.length > 0 && <span className="header__favourite-number">{favourites.length}</span>
+                    }
                     <span className="visually-hidden">Избранное</span>
                   </Link>
                   <div className="header__buttons-authorized">
